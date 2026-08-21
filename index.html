@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SehatPlus - Portal Kesehatan & Gaya Hidup</title>
+  <style>
+    :root {
+      --primary: #10b981;
+      --primary-dark: #059669;
+      --bg: #f3f4f6;
+      --card-bg: #ffffff;
+      --text: #1f2937;
+      --text-muted: #6b7280;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--primary);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    }
+
+    .card h2 {
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 0.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+    }
+
+    button {
+      width: 100%;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .result-box {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background-color: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      display: none;
+    }
+
+    /* Water Tracker Styling */
+    .water-controls {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    .water-progress {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #0284c7;
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>SehatPlus</h1>
+    <p>Pantau Kesehatan & Jaga Pola Hidup Sehat Setiap Hari</p>
+  </header>
+
+  <main class="container">
+    
+    <!-- Kalkulator BMI -->
+    <section class="card">
+      <h2>Kalkulator BMI</h2>
+      <div class="form-group">
+        <label for="weight">Berat Badan (kg)</label>
+        <input type="number" id="weight" placeholder="Contoh: 65">
+      </div>
+      <div class="form-group">
+        <label for="height">Tinggi Badan (cm)</label>
+        <input type="number" id="height" placeholder="Contoh: 170">
+      </div>
+      <button onclick="calculateBMI()">Hitung BMI</button>
+      
+      <div id="bmiResult" class="result-box">
+        <p>BMI Anda: <strong id="bmiValue">-</strong></p>
+        <p>Kategori: <strong id="bmiStatus">-</strong></p>
+      </div>
+    </section>
+
+    <!-- Tracker Air Minum -->
+    <section class="card">
+      <h2>Pencatat Air Minum</h2>
+      <p style="font-size: 0.9rem; color: var(--text-muted);">Target Harian: 2000 ml (8 Gelas)</p>
+      <div class="water-progress"><span id="waterAmount">0</span> / 2000 ml</div>
+      <div class="water-controls">
+        <button onclick="addWater(250)" style="background-color: #0284c7;">+ 250 ml (1 Gelas)</button>
+        <button onclick="resetWater()" style="background-color: #ef4444; width: 40%;">Reset</button>
+      </div>
+    </section>
+
+    <!-- Tips Kesehatan Harian -->
+    <section class="card">
+      <h2>Tips Sehat Hari Ini</h2>
+      <ul style="padding-left: 1.2rem; margin-top: 0.5rem; font-size: 0.95rem;">
+        <li style="margin-bottom: 0.5rem;">Istirahat cukup 7-8 jam per malam.</li>
+        <li style="margin-bottom: 0.5rem;">Lakukan olahraga ringan setidaknya 30 menit sehari.</li>
+        <li style="margin-bottom: 0.5rem;">Perbanyak konsumsi serat dari buah dan sayuran.</li>
+        <li>Batasi konsumsi gula berlebih dan makanan olahan.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 SehatPlus - Informasi kesehatan ini bersifat edukatif.</p>
+  </footer>
+
+  <script>
+    // Logika Kalkulator BMI
+    function calculateBMI() {
+      const weight = parseFloat(document.getElementById('weight').value);
+      const heightCm = parseFloat(document.getElementById('height').value);
+
+      if (!weight || !heightCm || weight <= 0 || heightCm <= 0) {
+        alert('Harap masukkan berat dan tinggi badan yang valid!');
+        return;
+      }
+
+      const heightM = heightCm / 100;
+      const bmi = (weight / (heightM * heightM)).toFixed(1);
+
+      let status = '';
+      if (bmi < 18.5) {
+        status = 'Kekurangan Berat Badan';
+      } else if (bmi >= 18.5 && bmi <= 24.9) {
+        status = 'Normal (Ideal)';
+      } else if (bmi >= 25 && bmi <= 29.9) {
+        status = 'Kelebihan Berat Badan';
+      } else {
+        status = 'Obesitas';
+      }
+
+      document.getElementById('bmiValue').innerText = bmi;
+      document.getElementById('bmiStatus').innerText = status;
+      document.getElementById('bmiResult').style.display = 'block';
+    }
+
+    // Logika Tracker Air Minum
+    let currentWater = 0;
+
+    function addWater(amount) {
+      currentWater += amount;
+      if (currentWater > 3000) {
+        alert('Hebat! Anda sudah memenuhi kecukupan cairan harian.');
+      }
+      updateWaterUI();
+    }
+
+    function resetWater() {
+      currentWater = 0;
+      updateWaterUI();
+    }
+
+    function updateWaterUI() {
+      document.getElementById('waterAmount').innerText = currentWater;
+    }
+  </script>
+</body>
+</html>
