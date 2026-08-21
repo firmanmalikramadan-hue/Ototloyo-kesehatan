@@ -3,15 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SehatPlus - Portal Kesehatan & Gaya Hidup</title>
+  <title>RebahanSehat - Tetap Sehat Tanpa Ribet</title>
   <style>
+    /* ==========================================
+       1. VARIABEL & DESAIN TEMA
+       ========================================== */
     :root {
       --primary: #10b981;
       --primary-dark: #059669;
-      --bg: #f3f4f6;
+      --accent: #38bdf8;
+      --bg: #f8fafc;
       --card-bg: #ffffff;
-      --text: #1f2937;
-      --text-muted: #6b7280;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --input-bg: #f1f5f9;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    }
+
+    [data-theme="dark"] {
+      --primary: #10b981;
+      --primary-dark: #34d399;
+      --accent: #38bdf8;
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --input-bg: #334155;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
     }
 
     * {
@@ -19,53 +39,163 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
     }
 
     body {
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
+    /* ==========================================
+       2. ANIMASI KEYFRAMES
+       ========================================== */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+      70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    @keyframes waveMove {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(-25%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* ==========================================
+       3. HEADER & HERO SECTION
+       ========================================== */
     header {
-      background-color: var(--primary);
+      background: linear-gradient(135deg, var(--primary) 0%, #0284c7 100%);
       color: white;
-      padding: 2rem 1rem;
+      padding: 4rem 1rem 6rem 1rem;
       text-align: center;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      position: relative;
+      animation: fadeInDown 1s ease-out;
     }
 
     header h1 {
-      font-size: 2.2rem;
+      font-size: 2.8rem;
       margin-bottom: 0.5rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* Tombol Dark Mode */
+    .theme-toggle-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle-btn:hover {
+      background: rgba(255, 255, 255, 0.35);
+      transform: scale(1.05);
+    }
+
+    /* Pembatas Gelombang Animasi */
+    .wave-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .wave-container svg {
+      position: relative;
+      display: block;
+      width: 200%;
+      height: 60px;
+      animation: waveMove 12s ease-in-out infinite;
+    }
+
+    .wave-container path {
+      fill: var(--bg);
+      transition: fill 0.4s ease;
+    }
+
+    /* ==========================================
+       4. CONTAINER & KARTU INTERAKTIF
+       ========================================== */
     .container {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 0 1rem;
+      max-width: 1050px;
+      margin: -2rem auto 3rem auto;
+      padding: 0 1.5rem;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
+      gap: 2rem;
+      position: relative;
+      z-index: 10;
     }
 
     .card {
       background: var(--card-bg);
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+      border-radius: 16px;
+      padding: 1.8rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      animation: fadeInUp 1s ease-out forwards;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Animasi Hover Kartu */
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Kartu Tengah Melayang Otomatis */
+    .card.floating {
+      animation: fadeInUp 1s ease-out, float 4s ease-in-out infinite 1s;
     }
 
     .card h2 {
-      color: var(--primary-dark);
-      margin-bottom: 1rem;
-      font-size: 1.3rem;
-      border-bottom: 2px solid #e5e7eb;
-      padding-bottom: 0.5rem;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+      font-size: 1.35rem;
+      border-bottom: 2px dashed var(--border);
+      padding-bottom: 0.6rem;
     }
 
+    /* ==========================================
+       5. ELEMEN FORM & TOMBOL INTERAKTIF
+       ========================================== */
     .form-group {
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
     }
 
     label {
@@ -77,132 +207,197 @@
 
     input {
       width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #d1d5db;
-      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
       font-size: 1rem;
+      background-color: var(--input-bg);
+      color: var(--text);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     input:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
     }
 
-    button {
+    button.btn-action {
       width: 100%;
       background-color: var(--primary);
       color: white;
       border: none;
-      padding: 0.75rem;
-      border-radius: 8px;
+      padding: 0.85rem;
+      border-radius: 10px;
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
-      transition: background-color 0.2s;
+      transition: transform 0.2s ease, background-color 0.3s ease;
     }
 
-    button:hover {
-      background-color: var(--primary-dark);
+    button.btn-action:active {
+      transform: scale(0.97);
     }
 
+    button.pulse {
+      animation: pulseGlow 2s infinite;
+    }
+
+    /* Box Hasil Kalkulasi */
     .result-box {
-      margin-top: 1rem;
+      margin-top: 1.2rem;
       padding: 1rem;
-      border-radius: 8px;
-      background-color: #ecfdf5;
-      border: 1px solid #a7f3d0;
+      border-radius: 10px;
+      background-color: var(--input-bg);
+      border-left: 4px solid var(--primary);
       display: none;
+      animation: fadeInUp 0.4s ease;
     }
 
     /* Water Tracker Styling */
-    .water-controls {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-      margin-top: 1rem;
+    .water-progress {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--accent);
+      text-align: center;
+      margin: 1.2rem 0;
+      transition: transform 0.2s ease;
     }
 
-    .water-progress {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #0284c7;
-      text-align: center;
-      margin: 1rem 0;
+    .water-controls {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    /* List Tips Animasi Hover */
+    .tips-list {
+      list-style: none;
+    }
+
+    .tips-list li {
+      padding: 0.8rem 0.5rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: transform 0.2s ease;
+    }
+
+    .tips-list li:hover {
+      transform: translateX(6px);
+      color: var(--primary);
+    }
+
+    .tips-list li:last-child {
+      border-bottom: none;
     }
 
     footer {
       text-align: center;
       padding: 2rem;
       color: var(--text-muted);
-      font-size: 0.875rem;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>SehatPlus</h1>
-    <p>Pantau Kesehatan & Jaga Pola Hidup Sehat Setiap Hari</p>
+    <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeBtn">
+      🌙 Mode Gelap
+    </button>
+    <h1>RebahanSehat 🛋️✨</h1>
+    <p>Cara Santai Menjaga Tubuh Tetap Bugar & Anti-Loyo</p>
+
+    <!-- Pembatas Gelombang Animasi -->
+    <div class="wave-container">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,0 C150,90 350,-40 500,60 C650,160 900,10 1200,40 L1200,120 L0,120 Z"></path>
+      </svg>
+    </div>
   </header>
 
   <main class="container">
     
-    <!-- Kalkulator BMI -->
+    <!-- Kartu 1: Kalkulator BMI -->
     <section class="card">
-      <h2>Kalkulator BMI</h2>
+      <h2>Kalkulator BMI Santai</h2>
       <div class="form-group">
         <label for="weight">Berat Badan (kg)</label>
-        <input type="number" id="weight" placeholder="Contoh: 65">
+        <input type="number" id="weight" placeholder="Contoh: 60">
       </div>
       <div class="form-group">
         <label for="height">Tinggi Badan (cm)</label>
         <input type="number" id="height" placeholder="Contoh: 170">
       </div>
-      <button onclick="calculateBMI()">Hitung BMI</button>
+      <button class="btn-action pulse" onclick="calculateBMI()">Hitung Skor Ideal</button>
       
       <div id="bmiResult" class="result-box">
-        <p>BMI Anda: <strong id="bmiValue">-</strong></p>
-        <p>Kategori: <strong id="bmiStatus">-</strong></p>
+        <p>BMI Anda: <strong id="bmiValue" style="color: var(--primary);">-</strong></p>
+        <p>Status: <strong id="bmiStatus">-</strong></p>
       </div>
     </section>
 
-    <!-- Tracker Air Minum -->
-    <section class="card">
-      <h2>Pencatat Air Minum</h2>
-      <p style="font-size: 0.9rem; color: var(--text-muted);">Target Harian: 2000 ml (8 Gelas)</p>
-      <div class="water-progress"><span id="waterAmount">0</span> / 2000 ml</div>
+    <!-- Kartu 2: Pencatat Air Minum (Floating Animation) -->
+    <section class="card floating">
+      <h2>Tracker Hidrasi 💧</h2>
+      <p style="font-size: 0.85rem; color: var(--text-muted);">Target harian minimal 2000 ml agar tidak lemas!</p>
+      <div class="water-progress" id="waterDisplay"><span id="waterAmount">0</span> <small style="font-size: 1rem;">/ 2000 ml</small></div>
       <div class="water-controls">
-        <button onclick="addWater(250)" style="background-color: #0284c7;">+ 250 ml (1 Gelas)</button>
-        <button onclick="resetWater()" style="background-color: #ef4444; width: 40%;">Reset</button>
+        <button class="btn-action" onclick="addWater(250)" style="background-color: var(--accent);">+ 1 Gelas</button>
+        <button class="btn-action" onclick="resetWater()" style="background-color: #ef4444; width: 40%;">Reset</button>
       </div>
     </section>
 
-    <!-- Tips Kesehatan Harian -->
+    <!-- Kartu 3: Tips Anti-Loyo -->
     <section class="card">
-      <h2>Tips Sehat Hari Ini</h2>
-      <ul style="padding-left: 1.2rem; margin-top: 0.5rem; font-size: 0.95rem;">
-        <li style="margin-bottom: 0.5rem;">Istirahat cukup 7-8 jam per malam.</li>
-        <li style="margin-bottom: 0.5rem;">Lakukan olahraga ringan setidaknya 30 menit sehari.</li>
-        <li style="margin-bottom: 0.5rem;">Perbanyak konsumsi serat dari buah dan sayuran.</li>
-        <li>Batasi konsumsi gula berlebih dan makanan olahan.</li>
+      <h2>Tips Rebahan Berfaedah</h2>
+      <ul class="tips-list">
+        <li><span>🧘‍♂️</span> Regangkan badan 5 menit setelah bangun tidur.</li>
+        <li><span>☀️</span> Buka jendela ruangan agar kena sinar matahari.</li>
+        <li><span>🥗</span> Kurangi camilan tinggi gula saat santai.</li>
+        <li><span>😴</span> Matikan HP 30 menit sebelum tidur malam.</li>
       </ul>
     </section>
 
   </main>
 
   <footer>
-    <p>&copy; 2026 SehatPlus - Informasi kesehatan ini bersifat edukatif.</p>
+    <p>&copy; 2026 RebahanSehat - Hidup sehat itu pilihan, bukan beban!</p>
   </footer>
 
   <script>
-    // Logika Kalkulator BMI
+    // 1. Logika Switch Dark Mode
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const themeBtn = document.getElementById('themeBtn');
+
+      if (currentTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeBtn.innerHTML = '🌙 Mode Gelap';
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeBtn.innerHTML = '☀️ Mode Terang';
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    // Memuat preferensi tema pengguna dari LocalStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      document.getElementById('themeBtn').innerHTML = '☀️ Mode Terang';
+    }
+
+    // 2. Logika Kalkulator BMI
     function calculateBMI() {
       const weight = parseFloat(document.getElementById('weight').value);
       const heightCm = parseFloat(document.getElementById('height').value);
 
       if (!weight || !heightCm || weight <= 0 || heightCm <= 0) {
-        alert('Harap masukkan berat dan tinggi badan yang valid!');
+        alert('Eits, isi dulu berat dan tinggi badanmu dengan benar ya!');
         return;
       }
 
@@ -211,28 +406,39 @@
 
       let status = '';
       if (bmi < 18.5) {
-        status = 'Kekurangan Berat Badan';
+        status = 'Kekurangan Berat Badan 🦴';
       } else if (bmi >= 18.5 && bmi <= 24.9) {
-        status = 'Normal (Ideal)';
+        status = 'Ideal Banget! Pertahankan 👍';
       } else if (bmi >= 25 && bmi <= 29.9) {
-        status = 'Kelebihan Berat Badan';
+        status = 'Kelebihan Berat Badan ⚠️';
       } else {
-        status = 'Obesitas';
+        status = 'Bahaya Obesitas 🚨';
       }
 
       document.getElementById('bmiValue').innerText = bmi;
       document.getElementById('bmiStatus').innerText = status;
-      document.getElementById('bmiResult').style.display = 'block';
+      
+      const resultBox = document.getElementById('bmiResult');
+      resultBox.style.display = 'block';
     }
 
-    // Logika Tracker Air Minum
+    // 3. Logika & Animasi Tracker Air Minum
     let currentWater = 0;
 
     function addWater(amount) {
       currentWater += amount;
-      if (currentWater > 3000) {
-        alert('Hebat! Anda sudah memenuhi kecukupan cairan harian.');
+      
+      // Animasi POP kecil saat menambah air
+      const waterDisplay = document.getElementById('waterDisplay');
+      waterDisplay.style.transform = 'scale(1.15)';
+      setTimeout(() => {
+        waterDisplay.style.transform = 'scale(1)';
+      }, 200);
+
+      if (currentWater >= 2000 && currentWater - amount < 2000) {
+        alert('🎉 Mantap! Target hidrasi harianmu sudah tercapai!');
       }
+
       updateWaterUI();
     }
 
