@@ -3,158 +3,1101 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>RebahanSehat - Tetap Sehat Tanpa Ribet</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
+  <!-- =========================
+       HEADER
+  ========================== -->
+
   <header>
-    <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeBtn">
+
+    <button
+      class="theme-toggle-btn"
+      onclick="toggleTheme()"
+      id="themeBtn">
       🌙 Mode Gelap
     </button>
-    <h1>RebahanSehat 🛋️✨</h1>
-    <p>Cara Santai Menjaga Tubuh Tetap Bugar & Anti-Loyo</p>
 
-    <!-- Pembatas Gelombang Animasi -->
+    <h1>RebahanSehat 🛋️✨</h1>
+
+    <p>
+      Cara Santai Menjaga Tubuh Tetap Bugar & Anti-Loyo
+    </p>
+
     <div class="wave-container">
-      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M0,0 C150,90 350,-40 500,60 C650,160 900,10 1200,40 L1200,120 L0,120 Z"></path>
+
+      <svg
+        viewBox="0 0 1200 120"
+        preserveAspectRatio="none">
+
+        <path
+          d="M0,0 C150,90 350,-40 500,60 C650,160 900,10 1200,40 L1200,120 L0,120 Z">
+        </path>
+
       </svg>
+
     </div>
+
   </header>
 
+
+  <!-- =========================
+       MAIN CARD
+  ========================== -->
+
   <main class="container">
-    
-    <!-- Kartu 1: Kalkulator BMI -->
+
+
+    <!-- =========================
+         KARTU BMI
+    ========================== -->
+
     <section class="card">
-      <h2>Kalkulator BMI Santai</h2>
+
+      <h2>
+        Kalkulator BMI Santai
+      </h2>
+
       <div class="form-group">
-        <label for="weight">Berat Badan (kg)</label>
-        <input type="number" id="weight" placeholder="Contoh: 60">
+
+        <label for="weight">
+          Berat Badan (kg)
+        </label>
+
+        <input
+          type="number"
+          id="weight"
+          placeholder="Contoh: 60">
+
       </div>
+
+
       <div class="form-group">
-        <label for="height">Tinggi Badan (cm)</label>
-        <input type="number" id="height" placeholder="Contoh: 170">
+
+        <label for="height">
+          Tinggi Badan (cm)
+        </label>
+
+        <input
+          type="number"
+          id="height"
+          placeholder="Contoh: 170">
+
       </div>
-      <button class="btn-action pulse" onclick="calculateBMI()">Hitung Skor Ideal</button>
-      
-      <div id="bmiResult" class="result-box">
-        <p>BMI Anda: <strong id="bmiValue" style="color: var(--primary);">-</strong></p>
-        <p>Status: <strong id="bmiStatus">-</strong></p>
+
+
+      <button
+        class="btn-action pulse"
+        onclick="calculateBMI()">
+
+        Hitung Skor Ideal
+
+      </button>
+
+
+      <div
+        id="bmiResult"
+        class="result-box">
+
+        <p>
+          BMI Anda:
+          <strong
+            id="bmiValue"
+            style="color: var(--primary);">
+            -
+          </strong>
+        </p>
+
+        <p>
+          Status:
+          <strong id="bmiStatus">
+            -
+          </strong>
+        </p>
+
       </div>
+
     </section>
 
-    <!-- Kartu 2: Pencatat Air Minum (Floating Animation) -->
+
+    <!-- =========================
+         TRACKER HIDRASI
+    ========================== -->
+
     <section class="card floating">
-      <h2>Tracker Hidrasi 💧</h2>
-      <p style="font-size: 0.85rem; color: var(--text-muted);">Target harian minimal 2000 ml agar tidak lemas!</p>
-      <div class="water-progress" id="waterDisplay"><span id="waterAmount">0</span> <small style="font-size: 1rem;">/ 2000 ml</small></div>
-      <div class="water-controls">
-        <button class="btn-action" onclick="addWater(250)" style="background-color: var(--accent);">+ 1 Gelas</button>
-        <button class="btn-action" onclick="resetWater()" style="background-color: #ef4444; width: 40%;">Reset</button>
+
+      <h2>
+        Tracker Hidrasi 💧
+      </h2>
+
+      <p
+        style="
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        ">
+
+        Target harian minimal 2000 ml agar tidak lemas!
+
+      </p>
+
+
+      <div
+        class="water-progress"
+        id="waterDisplay">
+
+        <span id="waterAmount">
+          0
+        </span>
+
+        <small
+          style="font-size: 1rem;">
+          / 2000 ml
+        </small>
+
       </div>
+
+
+      <!-- Progress air -->
+
+      <div class="water-bar">
+
+        <div
+          class="water-bar-fill"
+          id="waterBarFill">
+        </div>
+
+      </div>
+
+
+      <div class="water-controls">
+
+        <button
+          class="btn-action"
+          onclick="addWater(250)"
+          style="background-color: var(--accent);">
+
+          💧 + 1 Gelas
+
+        </button>
+
+
+        <button
+          class="btn-action"
+          onclick="resetWater()"
+          style="
+          background-color:#ef4444;
+          width:40%;
+          ">
+
+          Reset
+
+        </button>
+
+      </div>
+
     </section>
 
-    <!-- Kartu 3: Tips Anti-Loyo -->
+
+    <!-- =========================
+         TIPS
+    ========================== -->
+
     <section class="card">
-      <h2>Tips Rebahan Berfaedah</h2>
+
+      <h2>
+        Tips Rebahan Berfaedah
+      </h2>
+
       <ul class="tips-list">
-        <li><span>🧘‍♂️</span> Regangkan badan 5 menit setelah bangun tidur.</li>
-        <li><span>☀️</span> Buka jendela ruangan agar kena sinar matahari.</li>
-        <li><span>🥗</span> Kurangi camilan tinggi gula saat santai.</li>
-        <li><span>😴</span> Matikan HP 30 menit sebelum tidur malam.</li>
+
+        <li>
+          <span>🧘‍♂️</span>
+          Regangkan badan 5 menit setelah bangun tidur.
+        </li>
+
+        <li>
+          <span>☀️</span>
+          Buka jendela ruangan agar kena sinar matahari.
+        </li>
+
+        <li>
+          <span>🥗</span>
+          Kurangi camilan tinggi gula saat santai.
+        </li>
+
+        <li>
+          <span>😴</span>
+          Matikan HP 30 menit sebelum tidur malam.
+        </li>
+
       </ul>
+
     </section>
 
   </main>
 
+
+
+  <!-- =========================
+       CHALLENGE SEHAT
+  ========================== -->
+
+  <section
+    class="health-challenge"
+    id="healthChallenge">
+
+
+    <div class="challenge-header">
+
+      <div>
+
+        <h2>
+          🎯 Challenge Sehat Hari Ini
+        </h2>
+
+        <p>
+          Kebiasaan kecil hari ini,
+          tubuh lebih happy besok!
+        </p>
+
+      </div>
+
+
+      <div
+        class="challenge-counter"
+        id="challengeCounter">
+
+        🔥 0/5 Selesai
+
+      </div>
+
+    </div>
+
+
+
+    <!-- LIST CHALLENGE -->
+
+    <div class="challenge-list">
+
+
+      <label class="challenge-item">
+
+        <input
+          type="checkbox"
+          class="habit">
+
+        <span class="custom-check"></span>
+
+        <span class="challenge-text">
+          💧 Minum 2 gelas air setelah bangun
+        </span>
+
+      </label>
+
+
+
+      <label class="challenge-item">
+
+        <input
+          type="checkbox"
+          class="habit">
+
+        <span class="custom-check"></span>
+
+        <span class="challenge-text">
+          🚶 Jalan kaki minimal 15 menit
+        </span>
+
+      </label>
+
+
+
+      <label class="challenge-item">
+
+        <input
+          type="checkbox"
+          class="habit">
+
+        <span class="custom-check"></span>
+
+        <span class="challenge-text">
+          🧘 Stretching selama 5 menit
+        </span>
+
+      </label>
+
+
+
+      <label class="challenge-item">
+
+        <input
+          type="checkbox"
+          class="habit">
+
+        <span class="custom-check"></span>
+
+        <span class="challenge-text">
+          🍎 Makan buah hari ini
+        </span>
+
+      </label>
+
+
+
+      <label class="challenge-item">
+
+        <input
+          type="checkbox"
+          class="habit">
+
+        <span class="custom-check"></span>
+
+        <span class="challenge-text">
+          😴 Tidur cukup malam ini
+        </span>
+
+      </label>
+
+    </div>
+
+
+
+    <!-- PROGRESS -->
+
+    <div class="progress-container">
+
+      <div class="progress-info">
+
+        <span>
+          Progress hari ini
+        </span>
+
+        <strong id="progressText">
+          0%
+        </strong>
+
+      </div>
+
+
+      <div class="progress-bar">
+
+        <div
+          class="progress-fill"
+          id="progressFill">
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- RESET -->
+
+    <button
+      class="challenge-reset"
+      onclick="resetChallenge()">
+
+      🔄 Reset Challenge
+
+    </button>
+
+
+  </section>
+
+
+
+  <!-- =========================
+       MOOD
+  ========================== -->
+
+  <section class="mood-card">
+
+    <h2>
+      😊 Mood Kamu Hari Ini?
+    </h2>
+
+    <p>
+      Pilih yang paling menggambarkan keadaanmu.
+    </p>
+
+
+    <div class="mood-list">
+
+
+      <button
+        onclick="selectMood(
+        '😄',
+        'Wah, semangat banget! 🔥')">
+
+        😄
+
+        <span>
+          Semangat
+        </span>
+
+      </button>
+
+
+
+      <button
+        onclick="selectMood(
+        '🙂',
+        'Tetap jaga kesehatan hari ini! 💚')">
+
+        🙂
+
+        <span>
+          Oke
+        </span>
+
+      </button>
+
+
+
+      <button
+        onclick="selectMood(
+        '😐',
+        'Tidak apa-apa, jalani pelan-pelan.')">
+
+        😐
+
+        <span>
+          Biasa
+        </span>
+
+      </button>
+
+
+
+      <button
+        onclick="selectMood(
+        '😴',
+        'Sepertinya waktunya istirahat 😴')">
+
+        😴
+
+        <span>
+          Ngantuk
+        </span>
+
+      </button>
+
+
+
+      <button
+        onclick="selectMood(
+        '😫',
+        'Jangan lupa kasih tubuhmu waktu untuk istirahat.')">
+
+        😫
+
+        <span>
+          Capek
+        </span>
+
+      </button>
+
+    </div>
+
+
+    <div id="moodResult"></div>
+
+  </section>
+
+
+
+  <!-- =========================
+       QUOTE
+  ========================== -->
+
+  <section class="health-quote">
+
+    <div class="quote-icon">
+      💚
+    </div>
+
+    <p id="healthQuote">
+      "Tubuh sehat dimulai dari kebiasaan kecil."
+    </p>
+
+    <small>
+      Rebahan boleh, tapi tetap seimbang 😉
+    </small>
+
+  </section>
+
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
   <footer>
-    <p>&copy; 2026 RebahanSehat - Hidup sehat itu pilihan, bukan beban!</p>
+
+    <p>
+      &copy; 2026 RebahanSehat -
+      Hidup sehat itu pilihan, bukan beban!
+    </p>
+
   </footer>
 
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
   <script>
-    // 1. Logika Switch Dark Mode
+
+
+    /* ==================================
+       1. DARK MODE
+    ================================== */
+
     function toggleTheme() {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const themeBtn = document.getElementById('themeBtn');
+
+      const currentTheme =
+        document.documentElement
+        .getAttribute('data-theme');
+
+      const themeBtn =
+        document.getElementById('themeBtn');
+
 
       if (currentTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'light');
-        themeBtn.innerHTML = '🌙 Mode Gelap';
-        localStorage.setItem('theme', 'light');
-      } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeBtn.innerHTML = '☀️ Mode Terang';
-        localStorage.setItem('theme', 'dark');
+
+        document.documentElement
+          .setAttribute(
+            'data-theme',
+            'light'
+          );
+
+        themeBtn.innerHTML =
+          '🌙 Mode Gelap';
+
+        localStorage.setItem(
+          'theme',
+          'light'
+        );
+
       }
+
+      else {
+
+        document.documentElement
+          .setAttribute(
+            'data-theme',
+            'dark'
+          );
+
+        themeBtn.innerHTML =
+          '☀️ Mode Terang';
+
+        localStorage.setItem(
+          'theme',
+          'dark'
+        );
+
+      }
+
     }
 
-    // Memuat preferensi tema pengguna dari LocalStorage
-    const savedTheme = localStorage.getItem('theme');
+
+
+    /* ==================================
+       LOAD THEME
+    ================================== */
+
+    const savedTheme =
+      localStorage.getItem('theme');
+
+
     if (savedTheme === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      document.getElementById('themeBtn').innerHTML = '☀️ Mode Terang';
+
+      document.documentElement
+        .setAttribute(
+          'data-theme',
+          'dark'
+        );
+
+      document.getElementById(
+        'themeBtn'
+      ).innerHTML =
+        '☀️ Mode Terang';
+
     }
 
-    // 2. Logika Kalkulator BMI
-    function calculateBMI() {
-      const weight = parseFloat(document.getElementById('weight').value);
-      const heightCm = parseFloat(document.getElementById('height').value);
 
-      if (!weight || !heightCm || weight <= 0 || heightCm <= 0) {
-        alert('Eits, isi dulu berat dan tinggi badanmu dengan benar ya!');
+
+    /* ==================================
+       2. BMI CALCULATOR
+    ================================== */
+
+    function calculateBMI() {
+
+      const weight =
+        parseFloat(
+          document.getElementById(
+            'weight'
+          ).value
+        );
+
+
+      const heightCm =
+        parseFloat(
+          document.getElementById(
+            'height'
+          ).value
+        );
+
+
+      if (
+        !weight ||
+        !heightCm ||
+        weight <= 0 ||
+        heightCm <= 0
+      ) {
+
+        alert(
+          'Eits, isi dulu berat dan tinggi badanmu dengan benar ya!'
+        );
+
         return;
+
       }
 
-      const heightM = heightCm / 100;
-      const bmi = (weight / (heightM * heightM)).toFixed(1);
+
+      const heightM =
+        heightCm / 100;
+
+
+      const bmi =
+        weight /
+        (heightM * heightM);
+
+
+      const bmiRounded =
+        bmi.toFixed(1);
+
 
       let status = '';
+
+
       if (bmi < 18.5) {
-        status = 'Kekurangan Berat Badan 🦴';
-      } else if (bmi >= 18.5 && bmi <= 24.9) {
-        status = 'Ideal Banget! Pertahankan 👍';
-      } else if (bmi >= 25 && bmi <= 29.9) {
-        status = 'Kelebihan Berat Badan ⚠️';
-      } else {
-        status = 'Bahaya Obesitas 🚨';
+
+        status =
+          'Kekurangan Berat Badan 🦴';
+
       }
 
-      document.getElementById('bmiValue').innerText = bmi;
-      document.getElementById('bmiStatus').innerText = status;
-      
-      const resultBox = document.getElementById('bmiResult');
-      resultBox.style.display = 'block';
+      else if (bmi >= 18.5 && bmi <= 24.9) {
+
+        status =
+          'Ideal Banget! Pertahankan 👍';
+
+      }
+
+      else if (bmi >= 25 && bmi <= 29.9) {
+
+        status =
+          'Kelebihan Berat Badan ⚠️';
+
+      }
+
+      else {
+
+        status =
+          'Bahaya Obesitas 🚨';
+
+      }
+
+
+      document.getElementById(
+        'bmiValue'
+      ).innerText =
+        bmiRounded;
+
+
+      document.getElementById(
+        'bmiStatus'
+      ).innerText =
+        status;
+
+
+      document.getElementById(
+        'bmiResult'
+      ).style.display =
+        'block';
+
     }
 
-    // 3. Logika & Animasi Tracker Air Minum
-    let currentWater = 0;
+
+
+    /* ==================================
+       3. TRACKER AIR
+    ================================== */
+
+    let currentWater =
+      parseInt(
+        localStorage.getItem(
+          'currentWater'
+        )
+      ) || 0;
+
 
     function addWater(amount) {
-      currentWater += amount;
-      
-      // Animasi POP kecil saat menambah air
-      const waterDisplay = document.getElementById('waterDisplay');
-      waterDisplay.style.transform = 'scale(1.15)';
-      setTimeout(() => {
-        waterDisplay.style.transform = 'scale(1)';
-      }, 200);
 
-      if (currentWater >= 2000 && currentWater - amount < 2000) {
-        alert('🎉 Mantap! Target hidrasi harianmu sudah tercapai!');
+      currentWater += amount;
+
+
+      if (currentWater > 5000) {
+
+        currentWater = 5000;
+
       }
 
+
+      localStorage.setItem(
+        'currentWater',
+        currentWater
+      );
+
+
+      const waterDisplay =
+        document.getElementById(
+          'waterDisplay'
+        );
+
+
+      waterDisplay.style.transform =
+        'scale(1.15)';
+
+
+      setTimeout(() => {
+
+        waterDisplay.style.transform =
+          'scale(1)';
+
+      }, 200);
+
+
+      if (
+        currentWater >= 2000 &&
+        currentWater - amount < 2000
+      ) {
+
+        alert(
+          '🎉 Mantap! Target hidrasi harianmu sudah tercapai!'
+        );
+
+      }
+
+
       updateWaterUI();
+
     }
+
+
 
     function resetWater() {
+
       currentWater = 0;
+
+
+      localStorage.setItem(
+        'currentWater',
+        0
+      );
+
+
       updateWaterUI();
+
     }
 
+
+
     function updateWaterUI() {
-      document.getElementById('waterAmount').innerText = currentWater;
+
+      document.getElementById(
+        'waterAmount'
+      ).innerText =
+        currentWater;
+
+
+      const percentage =
+        Math.min(
+          (currentWater / 2000) * 100,
+          100
+        );
+
+
+      document.getElementById(
+        'waterBarFill'
+      ).style.width =
+        percentage + '%';
+
     }
+
+
+    updateWaterUI();
+
+
+
+    /* ==================================
+       4. HEALTH CHALLENGE
+    ================================== */
+
+    const habits =
+      document.querySelectorAll(
+        '.habit'
+      );
+
+
+    const counter =
+      document.getElementById(
+        'challengeCounter'
+      );
+
+
+    const progressFill =
+      document.getElementById(
+        'progressFill'
+      );
+
+
+    const progressText =
+      document.getElementById(
+        'progressText'
+      );
+
+
+    const challenge =
+      document.getElementById(
+        'healthChallenge'
+      );
+
+
+
+    /* LOAD CHECKLIST */
+
+    habits.forEach(
+      (habit, index) => {
+
+        const saved =
+          localStorage.getItem(
+            'habit_' + index
+          );
+
+
+        if (saved === 'true') {
+
+          habit.checked = true;
+
+        }
+
+      }
+    );
+
+
+
+    /* UPDATE */
+
+    function updateChallenge() {
+
+      const total =
+        habits.length;
+
+
+      let completed = 0;
+
+
+      habits.forEach(
+        (habit, index) => {
+
+          if (habit.checked) {
+
+            completed++;
+
+            localStorage.setItem(
+              'habit_' + index,
+              'true'
+            );
+
+          }
+
+          else {
+
+            localStorage.setItem(
+              'habit_' + index,
+              'false'
+            );
+
+          }
+
+        }
+      );
+
+
+      const percentage =
+        Math.round(
+          (completed / total) * 100
+        );
+
+
+      counter.textContent =
+        `🔥 ${completed}/${total} Selesai`;
+
+
+      progressFill.style.width =
+        percentage + '%';
+
+
+      progressText.textContent =
+        percentage + '%';
+
+
+
+      /* SEMUA SELESAI */
+
+      if (
+        completed === total
+      ) {
+
+        challenge.classList.add(
+          'completed'
+        );
+
+
+        counter.textContent =
+          '🎉 Semua Selesai!';
+
+      }
+
+      else {
+
+        challenge.classList.remove(
+          'completed'
+        );
+
+      }
+
+    }
+
+
+
+    /* CHECKBOX EVENT */
+
+    habits.forEach(
+      habit => {
+
+        habit.addEventListener(
+          'change',
+          updateChallenge
+        );
+
+      }
+    );
+
+
+
+    /* RESET CHALLENGE */
+
+    function resetChallenge() {
+
+      habits.forEach(
+        (habit, index) => {
+
+          habit.checked = false;
+
+          localStorage.setItem(
+            'habit_' + index,
+            'false'
+          );
+
+        }
+      );
+
+
+      updateChallenge();
+
+    }
+
+
+    updateChallenge();
+
+
+
+    /* ==================================
+       5. MOOD
+    ================================== */
+
+    function selectMood(
+      emoji,
+      message
+    ) {
+
+      document.getElementById(
+        'moodResult'
+      ).innerHTML =
+        `${emoji} ${message}`;
+
+
+      localStorage.setItem(
+        'todayMood',
+        emoji
+      );
+
+    }
+
+
+
+    /* ==================================
+       6. QUOTE RANDOM
+    ================================== */
+
+    const quotes = [
+
+      'Tubuh sehat dimulai dari kebiasaan kecil.',
+
+      'Sedikit bergerak lebih baik daripada tidak bergerak sama sekali.',
+
+      'Jangan lupa minum air hari ini 💧',
+
+      'Istirahat yang cukup adalah investasi untuk tubuh.',
+
+      'Konsisten lebih penting daripada sempurna.',
+
+      'Hari ini sehat, besok lebih kuat 💪',
+
+      'Rebahan boleh, tapi jangan lupa bergerak 😎',
+
+      'Rawat tubuhmu, karena cuma satu ini yang kamu punya 💚'
+
+    ];
+
+
+    const randomQuote =
+      quotes[
+        Math.floor(
+          Math.random() *
+          quotes.length
+        )
+      ];
+
+
+    document.getElementById(
+      'healthQuote'
+    ).textContent =
+      `"${randomQuote}"`;
+
+
   </script>
+
 </body>
 </html>
